@@ -1,4 +1,9 @@
 
 module.exports.home = function(req,resp){
-    resp.end('<h1>HomePage</h1>')
+     return resp.redirect("/users/login");
+}
+
+
+module.exports.login = function(req,resp){
+    return resp.render("login");
 }
