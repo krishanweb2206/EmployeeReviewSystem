@@ -3,6 +3,8 @@ const port = 8989;
 const app = express();
 const db = require('./config/mongoose');
 
+app.use(express.urlencoded());
+
 //use ejs template
 app.set("view engine", "ejs");
 app.set("views", "./views");
