@@ -5,6 +5,7 @@ const UserController = require("../controllers/UserController");
 
 router.get("/login", UserController.login);
 router.get('/SignUp',UserController.signup);
+router.get("/SignOut", passport.checkAuthentication, UserController.signout);
 
 router.post("/create",UserController.CreateUser);
 

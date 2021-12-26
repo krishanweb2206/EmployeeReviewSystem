@@ -2,7 +2,12 @@ const User = require('../models/user');
 
 
 module.exports.home = function(req,resp){
-     return resp.redirect("/users/login");
+
+    if (!req.isAuthenticated()) {
+        return resp.redirect("/users/login");
+    }
+
+    return resp.render("home");
 }
 
 
@@ -12,7 +17,7 @@ module.exports.login = function(req,resp){
         return resp.render("sigin");
     }
 
-   resp.end("<h1>.............</h1>");
+    return resp.redirect('/');
 }
 
 module.exports.signup = function(req,resp){
@@ -21,7 +26,7 @@ module.exports.signup = function(req,resp){
         return resp.render("signup");
     }
 
-    resp.end("<h1>.............</h1>");
+     return resp.redirect("/");
 }
 
 module.exports.CreateUser = async function(req,resp){
@@ -39,7 +44,7 @@ module.exports.CreateUser = async function(req,resp){
             name:req.body.username,
             email:req.body.email,
             password:req.body.password,
-            isAdmin: false,
+            isAdmin:false,
             });
             await newuser.save();
 
@@ -58,5 +63,12 @@ module.exports.CreateUser = async function(req,resp){
 
 module.exports.CreateSession = function(req,resp)
 {
-    resp.end("<h1>.............</h1>")
+    return resp.redirect("/");
 }
+
+module.exports.signout = function (req, res) {
+
+  req.logout();
+  return res.redirect("/");
+
+};
