@@ -7,11 +7,21 @@ module.exports.home = function(req,resp){
 
 
 module.exports.login = function(req,resp){
-    return resp.render("sigin");
+
+    if (!req.isAuthenticated()) {
+        return resp.render("sigin");
+    }
+
+   resp.end("<h1>.............</h1>");
 }
 
 module.exports.signup = function(req,resp){
-    return resp.render("signup");
+
+    if (!req.isAuthenticated()) {
+        return resp.render("signup");
+    }
+
+    resp.end("<h1>.............</h1>");
 }
 
 module.exports.CreateUser = async function(req,resp){
