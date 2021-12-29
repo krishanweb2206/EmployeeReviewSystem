@@ -20,7 +20,7 @@
             </div>
 
             <div class="m-4 p-4" style="width:85%">
-                    <form>
+                    <form action="/admin/taskassigned" method="POST">
                         <div class="mb-4">
                             <h4>Employee Name</h4>
                             <select class="form-select" aria-label="Default select example" name="employee_name">
@@ -57,17 +57,17 @@
             </div>
 
             <div class="m-4 p-4" style="width:85%">
-                <form>
+                <form action="/admin/makeadmin" method="POST">
                     <select class="form-select" aria-label="Default select example" name="admin_employee_name">
                         <option selected disabled>Select Employee Name</option>
                         <% for(u of users){ %>
                             <option value="<%= u.id %>"><%= u.name %></option>                          
                         <% } %>
                     </select> 
+                    <div style="display: flex;justify-content: center;margin-top:38%;">
+                         <button type="submit" class="btn btn-primary">Make Admin</button>
+                    </div>
                 </form>
-                <div style="display: flex;justify-content: center;margin-top:38%;">
-                    <button type="submit" class="btn btn-primary">Make Admin</button>
-                </div>
             </div>
 
         </div>

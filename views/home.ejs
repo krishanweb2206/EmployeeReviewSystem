@@ -20,20 +20,22 @@
                 </div>
             </div>
             <div>
-
+                
+                <% for(let emp of to_review){%>
                  <div class="card" style="border: 0;">
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <form action="">
+                        <h5 class="card-title">For : <%=emp.name%></h5>
+                        <form action="/review/create_review/<%=emp._id %>" method="POST">
                             <div class="form-group">
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="new_review" placeholder="Type your feedback....."></textarea>
                             </div>
-                        </form>
                         <div style="display: flex; justify-content: flex-end;margin-top: 7px;">
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <button type="submit" class="btn btn-dark">Submit Feedback</button>
                         </div>
+                        </form>
                     </div>
                 </div>
+                <%}%>
 
                
             </div>
@@ -47,16 +49,16 @@
                 </div>
             </div>
             <div>
-
+                
+            <% for(let i=0;i< my_review.length;i++){%>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <h5 class="card-title">From : <%=my_review[i].reviewer_name%></h5>
+                    <p class="card-text">Feedback: <%=my_review[i].review%></p>
+                    <p class="card-text">Modified At: <%=my_review[i].lastupdate%></p>
                 </div>
             </div>
-
-
+            <% } %>
 
 
 
