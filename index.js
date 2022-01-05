@@ -1,7 +1,9 @@
 const express = require('express');
 const port = 8989;
+const db = require("./config/mongoose");
 const app = express();
-const db = require('./config/mongoose');
+db();
+
 
 //Use for session
 const session = require('express-session');
@@ -11,6 +13,9 @@ const MongoStore = require('connect-mongo');
 
 
 app.use(express.urlencoded({ extended: true }));
+
+const flash = require("connect-flash");
+const flashmiddleware = require("./config/flashmiddleware");
 
 //use ejs template
 app.set("view engine", "ejs");
@@ -44,6 +49,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session()); 
 app.use(passport.setAuthenticatedUser);
+
+//require for flash message
+app.use(flash());
+app.use(flashmiddleware.setFlash);
 
 
 //use express router

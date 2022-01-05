@@ -24,11 +24,15 @@ module.exports.createReview = async function(req,resp){
         req.user.evaluatebyme.splice(index, 1);
         req.user.save();
 
+        req.flash("success", "Review Submit");
+
         return resp.redirect("back");
 
     }catch (error) {
-        console.log(`Error during assign task page :  ${error}`);
+
+       console.log(`Error during creating a review  :  ${error}`);
         resp.redirect("back");
+
     }
 
 }
@@ -59,12 +63,14 @@ module.exports.reviewdata = async function(req,resp){
 
       allreviewdata.push(data);
     }
-
+  
     return resp.render("review_records", { allreviewdata });
 
   } catch (error) {
-    console.log(`Error during click on allEmployee :  ${error}`);
+    
+    console.log(`Error during fetching all review from review dashbaord :  ${error}`);
     resp.redirect("back");
+
   }
 }
 
@@ -91,7 +97,8 @@ module.exports.viewdata = async function(req,resp){
       return resp.render("review_view", { data });
 
     } catch (error) {
-      console.log(`Error during click on allEmployee :  ${error}`);
+      
+      console.log(`Error during view a review from review dashbaord :  ${error}`);
       resp.redirect("back");
     }
      
@@ -117,11 +124,14 @@ module.exports.editReview = async function(req,resp){
         feedback: review,
       };
 
+      
       return resp.render("updatereview", { data,rid});
 
     } catch (error) {
-      console.log(`Error during click on allEmployee :  ${error}`);
+
+      console.log(`Error during update a review page from review dashbaord :  ${error}`);
       resp.redirect("back");
+
     }
 }
 
@@ -138,12 +148,15 @@ module.exports.updateReview = async function(req,resp){
         updatedreviewdata.review = req.body.feedback;
         updatedreviewdata.save();
 
+        req.flash("success", "UPDATE REVIEW DONE...");
         return resp.redirect('/review/reviewdata')
 
 
     }catch(error){
-        console.log(`Error during click on allEmployee :  ${error}`);
+
+        console.log(`Error during updating a review from review dashbaord :  ${error}`);
         resp.redirect("back");
+
     }
 
 }
@@ -163,8 +176,10 @@ module.exports.addReview = async function(req,resp){
        return resp.render('addreview',{loggeduser,users})
        
      } catch (error) {
-       console.log(`Error during click on allEmployee :  ${error}`);
+
+      console.log(`Error during adding a review form page from review dashbaord :  ${error}`);
        resp.redirect("back");
+
      }
 }
 
@@ -190,13 +205,16 @@ module.exports.addReviewfromadmin = async function(req,resp){
 
            reviewdetails.save();
            newreview.save();
-
+           
+          req.flash("success", "ADMIN CREATE REVIEW FOR USER...");
       }
       return resp.redirect("/review/reviewdata");
 
     } catch (error) {
-      console.log(`Error during click on allEmployee :  ${error}`);
+
+      console.log(`Error during adding a review from review dashbaord :  ${error}`);
       resp.redirect("back");
+
     }
 
 

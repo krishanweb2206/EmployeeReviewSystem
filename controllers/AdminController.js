@@ -10,9 +10,11 @@ module.exports.assignTask = async function(req,resp){
         }
 
         let users = await User.find({});
+       
         return resp.render("assign_task", {users});
     }
     catch(error){
+
           console.log(`Error during assign task page :  ${error}`);
           resp.redirect("back");
     }
@@ -28,7 +30,9 @@ module.exports.taskassigned = async function(req,resp){
        
        if(req.body.employee_name === req.body.reviewer_name)
        {
-         return resp.redirect("/");
+        
+        req.flash("error", "TASK ASSIGN YOUSELF NOT ALLOWED");
+        return resp.redirect("/admin/assigntask");
        }
 
        let to_employee = await User.findById(req.body.employee_name);
@@ -40,11 +44,15 @@ module.exports.taskassigned = async function(req,resp){
        from_employee.evaluatebyme.push(to_employee);
        from_employee.save();
 
-       return resp.redirect('back');
+      req.flash("success", "TASK ASSIGNED DONE...");
+      console.log("Task assigned successfully");
+
+      return resp.redirect('back');
 
 
      } catch (error) {
-       console.log(`Error during assign task page :  ${error}`);
+
+       console.log(`Error during assigned task :  ${error}`);
        resp.redirect("back");
      }
 
@@ -59,10 +67,12 @@ module.exports.EmployeeRecords = async function(req,resp){
        }
 
         let users = await User.find({});
+
         return resp.render("employee_records", {users});
 
     } catch (error) {
-       console.log(`Error during click on allEmployee :  ${error}`);
+
+       console.log(`Error during showing on all employee records :  ${error}`);
        resp.redirect("back");
     }
 }
@@ -75,11 +85,13 @@ module.exports.AddUser = async function(req,resp){
         return resp.redirect("/");
       }
 
-       return resp.render("addUser");
+      return resp.render("addUser");
 
     }catch (error) {
-      console.log(`Error during click on allEmployee :  ${error}`);
+
+      console.log(`Error during addemployee page from admin :  ${error}`);
       resp.redirect("back");
+
     }
 }
 
@@ -91,7 +103,10 @@ module.exports.CreateUser = async function (req, resp) {
      }
 
     if (req.body.password != req.body.confirmpassword) {
+
+      req.flash("error", "PASSWORD DOESNOT MATCH");
       return resp.redirect("back");
+
     }
 
     const user = await User.findOne({ email: req.body.email });
@@ -103,18 +118,27 @@ module.exports.CreateUser = async function (req, resp) {
         password: req.body.password,
         isAdmin: false,
       });
+
       await newuser.save();
 
       if (!newuser) {
-        console.log("error in creating new user");
+        console.log("error in creating new employee");
         return resp.redirect("back");
       }
+      
+      req.flash("success", "EMPLOYEE ADDED DONE...");
+      console.log("Employee added successfully from admin");
+
       return resp.redirect("/admin/employeerecords");
+
     } else {
+
+      req.flash("error", "E-MAIL ALREADY ADDED");
       return resp.redirect("back");
     }
   } catch (error) {
-    console.log(`Error during submit the sigup form:  ${error}`);
+
+    console.log(`Error during creating an employee from admin:  ${error}`);
     resp.redirect("back");
   }
 };
@@ -128,9 +152,12 @@ module.exports.ViewEmployee = async function(req,resp){
        }
 
        let user = await User.findById(req.params.id);
+
        return resp.render("viewEmployee", { user });
+
      } catch (error) {
-       console.log(`Error during click on allEmployee :  ${error}`);
+
+       console.log(`Error during view an employee :  ${error}`);
        resp.redirect("back");
      }
 
@@ -145,11 +172,14 @@ module.exports.UpdateReqUser = async function(req,resp){
        }
 
        let user = await User.findById(req.params.id);
+
        return resp.render("update_employee", { user });
 
      } catch (error) {
-       console.log(`Error during click on allEmployee :  ${error}`);
+
+       console.log(`Error during update form from admin :  ${error}`);
        resp.redirect("back");
+
      }
 }
 
@@ -169,11 +199,16 @@ module.exports.UpdatedUser = async function(req,resp){
 
          user.save();
 
+         req.flash("success", "UPDATE DONE...");
+        console.log("Employee's details are updated successfully...");
+
          return resp.redirect("/admin/employeerecords");
      
     }catch(error) {
-      console.log(`Error during click on allEmployee :  ${error}`);
+
+      console.log(`Error during updating the employee records :  ${error}`);
       resp.redirect("back");
+
     }
 }
 
@@ -225,12 +260,17 @@ module.exports.deleteEmployee = async function(req,resp){
 
       await User.findByIdAndDelete(id);
 
+      req.flash("error", "DELETE AN EMPLOYEE DONE...");
+      console.log("Employee's are deleted successfully...");
+
       return resp.redirect("/admin/employeerecords");
 
 
     }catch(error){
-       console.log(`Error during click on allEmployee :  ${error}`);
+
+       console.log(`Error during deleting an employee :  ${error}`);
        resp.redirect("back");
+
     }
 
 }
@@ -246,19 +286,24 @@ module.exports.makeadmin = async function(req,resp){
         let user = await User.findById(req.body.admin_employee_name);
 
         if (user.isAdmin == true) {
+
+          req.flash("error", "ALREADY ADMIN POWER ...");
           return resp.redirect("back");
         } else {
           user.isAdmin = true;
           await user.save();
         }
 
+        req.flash("success", "ADMIN POWER TRANSFER DONE...");
+        console.log("employee make admin successfully...");
+        
         return resp.redirect("back");
 
     } catch (error) {
-      console.log(`Error during click on allEmployee :  ${error}`);
+
+      console.log(`Error during making an employee to admin :  ${error}`);
       resp.redirect("back");
+
     }
-
-
 
 }
