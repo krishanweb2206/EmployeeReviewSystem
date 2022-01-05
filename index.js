@@ -27,7 +27,7 @@ app.set("views", "./views");
 app.use(
   session({
     name: "EmployeeReviewSystem",
-    secret: "process.env.SCERET_KEY",
+    secret: process.env.SCERET_KEY,
     saveUninitialized: false,
     resave: false,
     cookie: {
