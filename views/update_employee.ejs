@@ -9,18 +9,22 @@
 
 <body>
 
+    <!-- PARTIAL FOR HEADER -->
     <%- include('_header') %>
 
     <div class="w-50  mx-auto mt-5">
 
         <form class="w-50  mx-auto mt-2" action="/admin/UpdatedUser/<%=user.id%>" method="POST">
 
+            <!-- PARTIAL FOR VIEWEDITEMPLOYEE -->
             <%- include('_viewEditEmployee',{user}) %>
             
              <div class="mb-3">
+
                     <div class="d-flex justify-content-start">
                         <a href="/admin/employeerecords" type="button" class="btn btn-primary align-self-center">GO BACK</a>
                     </div>
+                    
                     <div class="d-flex justify-content-end" style="margin-top: -38px;">
                         <button class="btn btn-primary align-self-center">Update User</button>
                     </div>  

@@ -1,7 +1,8 @@
+// IMPORT THE DATABSE'S COLLECTIONS
 const User = require('../models/user');
 const Review = require('../models/review');
 
-
+// SUBMI THE REVIEW FROM ALL USER(EMPLOYEE / ADMIN )
 module.exports.createReview = async function(req,resp){
   
     try {
@@ -37,6 +38,7 @@ module.exports.createReview = async function(req,resp){
 
 }
 
+// REVIEW DASHBAORD REVIEW'S DATA
 module.exports.reviewdata = async function(req,resp){
 
   try {
@@ -74,7 +76,7 @@ module.exports.reviewdata = async function(req,resp){
   }
 }
 
-
+// VIEW THE REVIEW WITH AUTOFILL
 module.exports.viewdata = async function(req,resp){
 
     try {
@@ -104,6 +106,7 @@ module.exports.viewdata = async function(req,resp){
      
 }
 
+// EDIT THE REVIEW WITH AUTOFILL
 module.exports.editReview = async function(req,resp){
 
     try {
@@ -135,6 +138,7 @@ module.exports.editReview = async function(req,resp){
     }
 }
 
+// UPDATE THE EDITED REVIEW 
 module.exports.updateReview = async function(req,resp){
 
     try{
@@ -161,7 +165,7 @@ module.exports.updateReview = async function(req,resp){
 
 }
 
-
+// ADD REVIEW FROM REVIEW DASHBAORD (ONLY FOR ADMIN)
 module.exports.addReview = async function(req,resp){
 
      try {
@@ -183,6 +187,7 @@ module.exports.addReview = async function(req,resp){
      }
 }
 
+// ADDED REVIEW FROM REVIEW DASHBAORD (ONLY FOR ADMIN)
 module.exports.addReviewfromadmin = async function(req,resp){
 
     try {

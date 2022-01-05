@@ -9,15 +9,18 @@
 
 <body>
 
+    <!-- PARTIAL FOR HEADER -->
     <%- include('_header') %>
 
     <div class="w-50  mx-auto mt-5">
 
         <form class="w-50  mx-auto mt-2">
 
+            <!-- PARTIAL FOR VIEWEDITEMPLOYEE WITH DATA -->
             <%- include('_viewEditEmployee',{user}) %>
             
              <div class="mb-3">
+                 
                     <div class="d-flex justify-content-start">
                         <a href="/admin/employeerecords" type="button" class="btn btn-primary align-self-center">GO BACK</a>
                     </div>

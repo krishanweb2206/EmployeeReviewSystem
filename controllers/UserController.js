@@ -1,7 +1,8 @@
+// IMPORT THE DATABASE'S COLLECTIONS
 const User = require('../models/user');
 const Review = require('../models/review');
 
-
+// HOMEPAGE AFTER LOGIN
 module.exports.home = async function(req,resp){
 
     
@@ -38,7 +39,7 @@ module.exports.home = async function(req,resp){
     return resp.render("home",{to_review,my_review});
 }
 
-
+// SIGIN PAGE
 module.exports.login = function(req,resp){
 
     if (!req.isAuthenticated()) {
@@ -48,6 +49,7 @@ module.exports.login = function(req,resp){
     return resp.redirect('/');
 }
 
+// SIGIN UP
 module.exports.signup = function(req,resp){
 
     if (!req.isAuthenticated()) {
@@ -57,6 +59,7 @@ module.exports.signup = function(req,resp){
      return resp.redirect("/");
 }
 
+// CREATE USER FROM SIGNUP PAGE
 module.exports.CreateUser = async function(req,resp){
 
     try{
@@ -94,12 +97,14 @@ module.exports.CreateUser = async function(req,resp){
     
 }
 
+// SESSION IS CREATE AFTER SUCCESSFULLY LOGIN
 module.exports.CreateSession = function(req,resp)
 { 
     req.flash("success", "Yayy !!! Logged In Successfully");
     return resp.redirect("/");
 }
 
+// SIGNOUT
 module.exports.signout = function (req, res) {
 
   req.flash("success", "Ooops !!! Logged Out Successfully");

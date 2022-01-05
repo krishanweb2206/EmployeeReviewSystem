@@ -1,3 +1,4 @@
+// IMPORT THE MODULES
 const express = require('express');
 const port = 8989;
 const db = require("./config/mongoose");
@@ -44,6 +45,8 @@ app.use(
     ),
   })
 );
+
+
 
 // for authentication
 app.use(passport.initialize());

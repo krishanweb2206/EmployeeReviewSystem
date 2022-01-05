@@ -9,12 +9,14 @@
 
 <body>
 
+    <!-- PARTIAL FOR HEADER -->
     <%- include('_header') %>
 
     <div class="w-50  mx-auto mt-5">
 
         <form class="w-50  mx-auto mt-2" action="/review/updatedreview/<%=rid%>" method="POST">
 
+            <!-- PARTIAL FOR REVIEWFORM WITH DATA -->
             <%- include('_review_form', {fromemail:data.fromemail,foremail:data.foremail,feedback:data.feedback})%>
 
             <div class="mb-3">

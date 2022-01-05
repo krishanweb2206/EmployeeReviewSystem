@@ -1,3 +1,5 @@
+
+// REVIEW DATABASE WITH REVIEW , FROM , FOR FIELDS OR STORING ALL THE REVIEWS
 const mongoose = require("mongoose");
 
 const ReviewSchema = new mongoose.Schema(

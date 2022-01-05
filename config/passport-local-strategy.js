@@ -1,13 +1,16 @@
+// IMPORT MODULES
 const passport = require('passport');
 const LocalStratgey = require('passport-local').Strategy;
 
+// IMPORT THE DATABASES'S COLLECTIONS
 const User = require('../models/user');
 
 passport.use( new LocalStratgey(
     {
-        usernameField:"email"
+        usernameField:"email",
+        passReqToCallback : true
     },
-    function(email,password,done){
+    function(req,email,password,done){
         
         //find a user and establish identity
         User.findOne({email:email},function(error,user){
@@ -18,8 +21,11 @@ passport.use( new LocalStratgey(
             }
 
             if(!user || user.password != password){
+
+                req.flash("error","Invalid Username or Password")
                 console.log('Invalid Username/password');
                 return done(null,false);
+
             }
 
             return done(null,user);

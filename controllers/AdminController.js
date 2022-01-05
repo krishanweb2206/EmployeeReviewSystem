@@ -1,6 +1,8 @@
+// IMPORT THE DATABASES'S COLLECTIONS
 const User = require("../models/user");
 const Review = require('../models/review');
 
+// ASSIGN TASK PAGE SENDS WITH ALL EMPLOYEENAME
 module.exports.assignTask = async function(req,resp){
 
     try
@@ -20,6 +22,7 @@ module.exports.assignTask = async function(req,resp){
     }
 }
 
+// ON SUBMIT THE ASSIGN TASK 
 module.exports.taskassigned = async function(req,resp){
 
      try {
@@ -58,6 +61,7 @@ module.exports.taskassigned = async function(req,resp){
 
 }
 
+// SHOW ALL EMPLOYEES RECORDS AND SEND THE ALL EMPLOYEES
 module.exports.EmployeeRecords = async function(req,resp){
 
     try{
@@ -77,6 +81,7 @@ module.exports.EmployeeRecords = async function(req,resp){
     }
 }
 
+// ADD THE EMPLOYEE FROM ADMIN FORM PAGE
 module.exports.AddUser = async function(req,resp){
 
     try {
@@ -95,6 +100,7 @@ module.exports.AddUser = async function(req,resp){
     }
 }
 
+// ADD THE EMPLOYEE FROM ADMIN
 module.exports.CreateUser = async function (req, resp) {
   try {
 
@@ -143,6 +149,7 @@ module.exports.CreateUser = async function (req, resp) {
   }
 };
 
+// VIEW THE STUDENT FROM ADMIN
 module.exports.ViewEmployee = async function(req,resp){
 
     
@@ -163,6 +170,7 @@ module.exports.ViewEmployee = async function(req,resp){
 
 }
 
+// EDIT FORM ON EDIT WITH AUTOFILL DATA
 module.exports.UpdateReqUser = async function(req,resp){
 
      try {
@@ -183,6 +191,7 @@ module.exports.UpdateReqUser = async function(req,resp){
      }
 }
 
+// UPDATE SUBMIT SAVE THE UPDATED  EMPLOYEE DATA
 module.exports.UpdatedUser = async function(req,resp){
 
     try {
@@ -212,6 +221,7 @@ module.exports.UpdatedUser = async function(req,resp){
     }
 }
 
+// DELETE THE EMPLOYEE DATA FROM ADMIN
 module.exports.deleteEmployee = async function(req,resp){
 
     try{
@@ -274,7 +284,7 @@ module.exports.deleteEmployee = async function(req,resp){
     }
 
 }
-
+// MAKE AN EMPLOYEE TO ADMIN
 module.exports.makeadmin = async function(req,resp){
 
     try {

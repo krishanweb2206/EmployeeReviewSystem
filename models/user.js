@@ -1,3 +1,5 @@
+// EMPLOYEES DATABSE (ADMIN + EMPLOYEES) WITH NAME,EMAIL,PASSWORD,ADMIN OR NOT FIELDS
+
 const mongoose = require('mongoose');
 
 const EmployeeSchema = new mongoose.Schema({
