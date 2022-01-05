@@ -1,4 +1,5 @@
 // IMPORT THE MODULES
+require("dotenv").config();
 const express = require('express');
 const port = 8989;
 const db = require("./config/mongoose");
@@ -26,7 +27,7 @@ app.set("views", "./views");
 app.use(
   session({
     name: "EmployeeReviewSystem",
-    secret: "Systemsystem",
+    secret: "process.env.SCERET_KEY",
     saveUninitialized: false,
     resave: false,
     cookie: {
@@ -34,7 +35,7 @@ app.use(
     },
     store: MongoStore.create(
       {
-        mongoUrl: "mongodb://localhost/employee_review_development",
+        mongoUrl: process.env.MONGODB_URI,
         autoRemove: "disabled",
         mongooseConnection: db,
         collectionName: "sessions",
